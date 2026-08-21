@@ -46,3 +46,18 @@ def sumArr(arr):
 
 ans = sumArr(arr)
 print(ans)
+
+
+#* Recursive approach
+
+
+def recursive_sum(arr):
+    
+    # if not arr:
+    #     return 0
+    
+    
+    if arr.length() == 0:
+        return 0
+    
+    arr[0] + recursive_sum(arr[1:])

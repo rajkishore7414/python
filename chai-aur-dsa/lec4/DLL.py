@@ -1,0 +1,135 @@
+
+
+class Node:
+    
+    def __init__(self, value=None):
+        self.data = value
+        self.prev = None
+        self.next = None
+        
+        
+        
+
+
+
+
+class DoublyLL:
+    
+    def __init__(self):
+        self.head = None
+        
+        
+        
+    def insertAtEnd(self, value):
+        temp = Node(value)
+        
+        if(self.head == None):
+            self.head = temp
+            return
+        
+        t = self.head
+        while(t.next != None):
+            t = t.next
+        
+        t.next = temp
+        temp.prev = t
+        
+        
+        
+    def insertAtBeg(self, value):
+        temp = Node(value)
+        
+        if(self.head == None):
+            self.head = temp
+            return
+        
+        temp.next = self.head
+        self.head.prev = temp
+        self.head = temp
+        
+        
+        
+    def insertAtMid(self, value, x):
+        
+        t = self.head
+        
+        while(t.next != None):
+            if(t.data == x):
+                break
+            
+            else:
+                t = t.next
+                
+            
+        temp = Node(value)
+        temp.next = t.next
+        t.next.prev = temp
+        t.next = temp
+        temp.prev = t
+         
+        
+     
+    def deletionDLL(self, value):
+        if(self.head == None):
+            print("Linked List is empt")
+            return
+        
+        t = self.head
+        # delete from beg -> first Node of DLL
+        if(t.data == value):
+            self.head = t.next
+            self.head.prev = None
+            return
+            
+        #* delete At Mid
+        while(t.next != None):
+            if(t.data == value):
+                t.prev.next = t.next
+                t.next.prev = t.prev
+                return
+            else:
+                t = t.next
+
+        #* delete At End
+        if(t.data == value):
+            t.prev.next = None
+        
+        
+        
+        
+        
+    def printDLL(self):
+        t1 = self.head
+    
+        while(t1.next != None):
+            print(t1.data, end=" <--> ")
+            t1 = t1.next
+        print(t1.data)
+        
+        
+        
+        
+
+
+obj = DoublyLL()
+
+
+obj.insertAtEnd(10)
+obj.insertAtEnd(20)
+obj.insertAtEnd(30)
+obj.insertAtEnd(40)
+
+obj.insertAtBeg(5)
+
+obj.insertAtMid(500, 20)
+
+obj.deletionDLL(500)
+obj.deletionDLL(20)
+
+
+obj.printDLL()
+
+
+
+obj.head.prev
+obj.head.next
